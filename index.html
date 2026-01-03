@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>交通大数据仿真与可视化</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>交通大数据仿真与可视化</h1>
+      <p>大数据分析技术实验室 · 交通仿真实验</p>
+    </header>
+
+    <main>
+      <section class="canvas-section">
+        <div class="canvas-header">
+          <h2>地图与车辆区域</h2>
+          <div class="stats">
+            <span id="time-display">--</span>
+            <span id="vehicle-count">车辆数：0</span>
+          </div>
+        </div>
+        <canvas id="map-canvas" width="900" height="600"></canvas>
+        <div class="legend">
+          <span><i class="legend-line low"></i> 畅通</span>
+          <span><i class="legend-line mid"></i> 轻度拥堵</span>
+          <span><i class="legend-line high"></i> 严重拥堵</span>
+          <span><i class="legend-dot"></i> 车辆</span>
+        </div>
+      </section>
+
+      <aside class="control-panel">
+        <section>
+          <h3>仿真控制</h3>
+          <button id="toggle-sim">开始仿真</button>
+          <button id="step-sim">单步更新</button>
+          <button id="reset-sim">重置</button>
+        </section>
+
+        <section>
+          <h3>可视化任务</h3>
+          <label class="switch">
+            <input type="checkbox" id="toggle-vehicles" checked />
+            <span>任务1：显示车辆位置</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="toggle-congestion" checked />
+            <span>任务2：显示道路拥堵</span>
+          </label>
+        </section>
+
+        <section>
+          <h3>道路拥堵曲线</h3>
+          <div class="row">
+            <label for="edge-select">选择道路：</label>
+            <select id="edge-select"></select>
+          </div>
+          <canvas id="chart-canvas" width="320" height="180"></canvas>
+        </section>
+
+        <section>
+          <h3>最短时间行车路线</h3>
+          <div class="row">
+            <label for="start-select">起点：</label>
+            <select id="start-select"></select>
+          </div>
+          <div class="row">
+            <label for="end-select">终点：</label>
+            <select id="end-select"></select>
+          </div>
+          <button id="plan-route">规划路线</button>
+          <p class="hint">权重 = 距离 / 速度 × 拥堵系数</p>
+        </section>
+
+        <section>
+          <h3>仿真说明</h3>
+          <ul>
+            <li>车辆入口/出口使用轮盘赌概率生成。</li>
+            <li>车辆数随时间变化曲线采样（早晚高峰）。</li>
+            <li>路口红绿灯循环切换 12 种通行组合。</li>
+            <li>同方向前方车辆过多时减速或停车。</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      <p>交通大数据仿真与可视化 · demo</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
